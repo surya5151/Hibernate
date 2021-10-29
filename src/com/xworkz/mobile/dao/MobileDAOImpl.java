@@ -3,6 +3,7 @@ package com.xworkz.mobile.dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import com.xworkz.mobile.entity.MobileEntity;
 
@@ -90,6 +91,123 @@ public class MobileDAOImpl implements MobileDAO {
 				System.out.println("sessionFactory is not closed");
 			}
 		}
+	}
+
+	@Override
+	public void updateMobileEntity() {
+		System.out.println("Invoked updateMobileEntity()");
+		Session session = null;
+		SessionFactory sessionFactory = null;
+		Transaction transaction = null;
+
+		try {
+			// step-1 bootstap the framework(configure in xml file code)
+			Configuration configuration = new Configuration();
+
+			// step-2 parse the hibernate.cfg.xml
+			configuration.configure("hibernate.cfg.xml");
+
+			// step-3 read the metadata from annotation(mapping to db)
+			configuration.addAnnotatedClass(MobileEntity.class);
+
+			// step-4 to create sessionfactory(its checking configure,mapping)
+			sessionFactory = configuration.buildSessionFactory();
+
+			// step-5 sessionfactrory create session, this session is java object and it
+			// perform the db operation
+			session = sessionFactory.openSession();
+
+			MobileEntity mobileEntity = session.get(MobileEntity.class, 5);
+			System.out.println("Mobile Entity " + mobileEntity);
+
+			mobileEntity.setMobileBrand("oppo");
+			mobileEntity.setMobileColor("white");
+			mobileEntity.setFingerPrintSupport(false);
+			mobileEntity.setMobilePrice(15000);
+
+			session.update(mobileEntity);
+
+			transaction = session.beginTransaction();
+			transaction.commit();
+
+			System.out.println("update the row ");
+
+		} catch (HibernateException e) {
+			System.out.println("inside catch block !!!!!");
+			transaction.rollback();
+			System.out.println("Transaction is roll back");
+
+		} finally {
+			if (session != null) {
+				session.close();
+				System.out.println("session is closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+			if (sessionFactory != null) {
+				sessionFactory.close();
+				System.out.println("sessionFactory is closed");
+			} else {
+				System.out.println("sessionFactory is not closed");
+			}
+		}
+
+	}
+
+	@Override
+	public void deletMobileEntity() {
+		System.out.println("Invoked deletMobileEntity()");
+		Session session = null;
+		SessionFactory sessionFactory = null;
+		Transaction transaction = null;
+
+		try {
+			// step-1 bootstap the framework(configure in xml file code)
+			Configuration configuration = new Configuration();
+
+			// step-2 parse the hibernate.cfg.xml
+			configuration.configure("hibernate.cfg.xml");
+
+			// step-3 read the metadata from annotation(mapping to db)
+			configuration.addAnnotatedClass(MobileEntity.class);
+
+			// step-4 to create sessionfactory(its checking configure,mapping)
+			sessionFactory = configuration.buildSessionFactory();
+
+			// step-5 sessionfactrory create session, this session is java object and it
+			// perform the db operation
+			session = sessionFactory.openSession();
+
+			MobileEntity mobileEntity = session.get(MobileEntity.class, 10);
+			System.out.println("Mobile Entity " + mobileEntity);
+
+			session.delete(mobileEntity);
+
+			transaction = session.beginTransaction();
+			transaction.commit();
+
+			System.out.println("Delete one row ");
+
+		} catch (HibernateException e) {
+			System.out.println("inside catch block !!!!!");
+			transaction.rollback();
+			System.out.println("Transaction is roll back");
+
+		} finally {
+			if (session != null) {
+				session.close();
+				System.out.println("session is closed");
+			} else {
+				System.out.println("session is not closed");
+			}
+			if (sessionFactory != null) {
+				sessionFactory.close();
+				System.out.println("sessionFactory is closed");
+			} else {
+				System.out.println("sessionFactory is not closed");
+			}
+		}
+
 	}
 
 }

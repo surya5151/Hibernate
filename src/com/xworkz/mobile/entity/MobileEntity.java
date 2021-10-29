@@ -9,6 +9,13 @@ import javax.persistence.Table;
 @Entity
 public class MobileEntity {
 
+	@Override
+	public String toString() {
+		return "MobileEntity [mobileID=" + mobileID + ", mobileBrand=" + mobileBrand + ", mobilePrice=" + mobilePrice
+				+ ", mobileRom=" + mobileRom + ", mobileColor=" + mobileColor + ", cameraSize=" + cameraSize
+				+ ", isFingerPrintSupport=" + isFingerPrintSupport + ", osType=" + osType + "]";
+	}
+
 	@Id
 	@Column(name = "mobile_ID")
 	private int mobileID;
@@ -109,6 +116,11 @@ public class MobileEntity {
 
 	public void setOsType(String osType) {
 		this.osType = osType;
+	}
+
+	public MobileEntity() {
+		System.out.println("Invoked no-org");
+
 	}
 
 }
