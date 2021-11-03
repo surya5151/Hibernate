@@ -17,14 +17,11 @@ public class MobileDAOImpl implements MobileDAO {
 		SessionFactory sessionFactory = null;
 
 		try {
-			Configuration configuration = new Configuration();
-			configuration.configure("hibernate.cfg.xml");
-			configuration.addAnnotatedClass(MobileEntity.class);
-
-			sessionFactory = configuration.buildSessionFactory();
+			sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(MobileEntity.class)
+					.buildSessionFactory();
 
 			session = sessionFactory.openSession();
-			MobileEntity mobileEntity = new MobileEntity(13, "Nokia", 25000.0, "500GB", "cream", 20, true, "Andriod");
+			MobileEntity mobileEntity = new MobileEntity(6, "Nokia", 25000.0, "500GB", "cream", 20, true, "Andriod");
 
 			transaction = session.beginTransaction();
 
@@ -63,11 +60,10 @@ public class MobileDAOImpl implements MobileDAO {
 		SessionFactory sessionFactory = null;
 
 		try {
-			Configuration configuration = new Configuration();
-			configuration.configure("hibernate.cfg.xml");
-			configuration.addAnnotatedClass(MobileEntity.class);
 
-			sessionFactory = configuration.buildSessionFactory();
+			sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(MobileEntity.class)
+					.buildSessionFactory();
+
 			session = sessionFactory.openSession();
 
 			MobileEntity mobileEntity = session.get(MobileEntity.class, 1);
@@ -101,26 +97,16 @@ public class MobileDAOImpl implements MobileDAO {
 		Transaction transaction = null;
 
 		try {
-			// step-1 bootstap the framework(configure in xml file code)
-			Configuration configuration = new Configuration();
 
-			// step-2 parse the hibernate.cfg.xml
-			configuration.configure("hibernate.cfg.xml");
+			sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(MobileEntity.class)
+					.buildSessionFactory();
 
-			// step-3 read the metadata from annotation(mapping to db)
-			configuration.addAnnotatedClass(MobileEntity.class);
-
-			// step-4 to create sessionfactory(its checking configure,mapping)
-			sessionFactory = configuration.buildSessionFactory();
-
-			// step-5 sessionfactrory create session, this session is java object and it
-			// perform the db operation
 			session = sessionFactory.openSession();
 
 			MobileEntity mobileEntity = session.get(MobileEntity.class, 5);
 			System.out.println("Mobile Entity " + mobileEntity);
 
-			mobileEntity.setMobileBrand("oppo");
+			mobileEntity.setMobileBrand("oppo2");
 			mobileEntity.setMobileColor("white");
 			mobileEntity.setFingerPrintSupport(false);
 			mobileEntity.setMobilePrice(15000);
@@ -165,7 +151,7 @@ public class MobileDAOImpl implements MobileDAO {
 			// step-1 bootstap the framework(configure in xml file code)
 			Configuration configuration = new Configuration();
 
-			// step-2 parse the hibernate.cfg.xml
+			// step-2 to load the hibernate.cfg.xml and parse the hibernate.cfg.xml
 			configuration.configure("hibernate.cfg.xml");
 
 			// step-3 read the metadata from annotation(mapping to db)
@@ -178,7 +164,7 @@ public class MobileDAOImpl implements MobileDAO {
 			// perform the db operation
 			session = sessionFactory.openSession();
 
-			MobileEntity mobileEntity = session.get(MobileEntity.class, 10);
+			MobileEntity mobileEntity = session.get(MobileEntity.class, 6);
 			System.out.println("Mobile Entity " + mobileEntity);
 
 			session.delete(mobileEntity);

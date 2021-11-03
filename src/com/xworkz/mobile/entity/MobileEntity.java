@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Table(name = "mobile_details")
 @Entity
-public class MobileEntity {
+public class MobileEntity implements java.io.Serializable { // implements are not mandatory
 
 	@Override
 	public String toString() {
