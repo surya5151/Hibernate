@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import com.xworkz.mobile.entity.MobileEntity;
+import com.xworkz.singlesessionfactory.*; 
 
 public class MobileDAOImpl implements MobileDAO {
 
@@ -17,10 +18,9 @@ public class MobileDAOImpl implements MobileDAO {
 		SessionFactory sessionFactory = null;
 
 		try {
-			sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(MobileEntity.class)
-					.buildSessionFactory();
-
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
+
 			MobileEntity mobileEntity = new MobileEntity(6, "Nokia", 25000.0, "500GB", "cream", 20, true, "Andriod");
 
 			transaction = session.beginTransaction();
@@ -28,8 +28,6 @@ public class MobileDAOImpl implements MobileDAO {
 			session.save(mobileEntity);
 
 			transaction.commit();
-
-			System.out.println("Done");
 
 		} catch (HibernateException e) {
 			System.out.println("inside catch block !!!!!");
@@ -43,14 +41,7 @@ public class MobileDAOImpl implements MobileDAO {
 			} else {
 				System.out.println("session is not closed");
 			}
-			if (sessionFactory != null) {
-				sessionFactory.close();
-				System.out.println("sessionFactory is closed");
-			} else {
-				System.out.println("sessionFactory is not closed");
-			}
 		}
-
 	}
 
 	@Override
@@ -60,16 +51,15 @@ public class MobileDAOImpl implements MobileDAO {
 		SessionFactory sessionFactory = null;
 
 		try {
-
-			sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(MobileEntity.class)
-					.buildSessionFactory();
-
+			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 
-			MobileEntity mobileEntity = session.get(MobileEntity.class, 1);
-
+			MobileEntity mobileEntity = session.get(MobileEntity.class, 6);
+			
 			System.out.println("Read is Done " + mobileEntity);
 
+			SessionFactoryProvider.closeSessionFactory();
+			
 		} catch (HibernateException e) {
 			System.out.println("inside catch block !!!!!");
 
@@ -80,12 +70,7 @@ public class MobileDAOImpl implements MobileDAO {
 			} else {
 				System.out.println("session is not closed");
 			}
-			if (sessionFactory != null) {
-				sessionFactory.close();
-				System.out.println("sessionFactory is closed");
-			} else {
-				System.out.println("sessionFactory is not closed");
-			}
+
 		}
 	}
 

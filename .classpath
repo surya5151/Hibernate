@@ -29,5 +29,6 @@
 	<classpathentry kind="lib" path="C:/Users/Surya/Downloads/hibernate-release-5.6.0.Final/hibernate-release-5.6.0.Final/lib/spatial/postgresql-42.2.16.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Surya/Downloads/hibernate-release-5.6.0.Final/hibernate-release-5.6.0.Final/lib/spatial/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/chair_Laibrary/mysql-connector-java-8.0.26/mysql-connector-java-8.0.26/mysql-connector-java-8.0.26.jar"/>
+	<classpathentry kind="lib" path="C:/chair_Laibrary/Hibernate/SingleTonSessionFactory1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

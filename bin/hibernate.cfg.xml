@@ -9,6 +9,7 @@
 		<property name="connection.url">jdbc:mysql://localhost:3306/mobiledb1</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">surya1991</property>
+		<mapping class="com.xworkz.mobile.entity.MobileEntity" />
 	</session-factory>
 
 </hibernate-configuration>
