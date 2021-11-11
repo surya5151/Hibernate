@@ -2,12 +2,27 @@ package com.xworkz.mobile.dao;
 
 public interface MobileDAO {
 
-	public void saveMobileEntity();
+	void saveMobileEntity();
 
-	public void getMobileEntity();
+	void getMobileEntity();
 
-	public void updateMobileEntity();
+	void updateMobileEntity();
 
-	public void deletMobileEntity();
+	void deletMobileEntity();
+
+	void getAllMobileEntites();
+	
+	void getMobileBrandById();
+	
+	void getMobileColorByID();
+	
+	void getMobileEntityByID();
+	
+	void updateMobilePriceByID();
+	
+	void deleteMobileEntityByID();
+	
+	
+	
 
 }

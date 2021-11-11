@@ -8,14 +8,27 @@ public class MobileTester {
 
 		MobileDAOImpl mobileDAOImpl = new MobileDAOImpl();
 
-		 mobileDAOImpl.saveMobileEntity();
+		// mobileDAOImpl.saveMobileEntity();
 
-		 mobileDAOImpl.getMobileEntity();
+		// mobileDAOImpl.getMobileEntity();
 
 		// mobileDAOImpl.updateMobileEntity();
 
-		//mobileDAOImpl.deletMobileEntity();
+		// mobileDAOImpl.deletMobileEntity();
 
+		// mobileDAOImpl.getAllMobileEntites();
+
+		//mobileDAOImpl.getMobileBrandById();
+		
+		//mobileDAOImpl.getMobileColorByID();
+
+		//mobileDAOImpl.getMobileEntityByID();
+		
+		//mobileDAOImpl.updateMobilePriceByID();
+		
+		//mobileDAOImpl.deleteMobileEntityByID();
+		
+	
 	}
 
 }

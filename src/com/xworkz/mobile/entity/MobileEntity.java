@@ -2,8 +2,15 @@ package com.xworkz.mobile.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.id.IdentifierGenerator;
+import org.hibernate.id.IdentityGenerator;
+import org.hibernate.id.IncrementGenerator;
+import org.hibernate.id.SequenceGenerator;
 
 @Table(name = "mobile_details")
 @Entity
@@ -18,6 +25,8 @@ public class MobileEntity implements java.io.Serializable { // implements are no
 
 	@Id
 	@Column(name = "mobile_ID")
+	@GeneratedValue(generator = "abc")
+	@GenericGenerator(name="abc", strategy="increment")
 	private int mobileID;
 
 	@Column(name = "mobile_Brand")
@@ -41,10 +50,10 @@ public class MobileEntity implements java.io.Serializable { // implements are no
 	@Column(name = "os_Type")
 	private String osType;
 
-	public MobileEntity(int mobileID, String mobileBrand, double mobilePrice, String mobileRom, String mobileColor,
+	public MobileEntity(String mobileBrand, double mobilePrice, String mobileRom, String mobileColor,
 			int cameraSize, boolean isFingerPrintSupport, String osType) {
 		super();
-		this.mobileID = mobileID;
+		
 		this.mobileBrand = mobileBrand;
 		this.mobilePrice = mobilePrice;
 		this.mobileRom = mobileRom;
@@ -120,7 +129,7 @@ public class MobileEntity implements java.io.Serializable { // implements are no
 
 	public MobileEntity() {
 		System.out.println("Invoked no-org");
-
+		
 	}
 
 }
