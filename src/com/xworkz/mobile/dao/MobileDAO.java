@@ -1,8 +1,10 @@
 package com.xworkz.mobile.dao;
 
+import com.xworkz.mobile.entity.MobileEntity;
+
 public interface MobileDAO {
 
-	void saveMobileEntity();
+	void saveMobileEntity(MobileEntity mobileEntity);
 
 	void getMobileEntity();
 
@@ -11,18 +13,31 @@ public interface MobileDAO {
 	void deletMobileEntity();
 
 	void getAllMobileEntites();
-	
-	void getMobileBrandById();
-	
-	void getMobileColorByID();
-	
-	void getMobileEntityByID();
-	
-	void updateMobilePriceByID();
-	
-	void deleteMobileEntityByID();
-	
-	
-	
+
+	void getMobileBrandById(int mobileID);
+
+	void getMobileColorByID(int mobileID);
+
+	void getMobileEntityByID(int mobileID);
+
+	void updateMobilePriceByID(int mobileID);
+
+	void deleteMobileEntityByID(int mobileID);
+
+	void updateMobilePriceByMobileBrand(String mobileBrand);
+
+	void getMobileEntityByMobileBrand(String mobileBrand);
+
+	void deleteMobileEntityByMobileBrand(String mobileBrand);
+
+	void countMobileEntityBrand(String brand);
+
+	void minPriceInMobileEntity();
+
+	void maxPriceInMobileEntity();
+
+	void avgPriceInMobileEntity();
+
+	void sumOfPriceInMobileEntity();
 
 }
