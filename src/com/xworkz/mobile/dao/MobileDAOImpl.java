@@ -225,9 +225,8 @@ public class MobileDAOImpl implements MobileDAO {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 
-			String hqlQuery = "select mobileBrand from MobileEntity where mobileID='" + mobileID + "'";
-
-			org.hibernate.query.Query query = session.createQuery(hqlQuery);
+			org.hibernate.query.Query query = session.getNamedQuery("MobileEntity.getMobileEntityByID");
+			query.setParameter("ID", mobileID);
 
 			List listOfMobileEntity = query.list();
 
@@ -256,9 +255,8 @@ public class MobileDAOImpl implements MobileDAO {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 
-			String hqlQuery = "select mobile.mobileColor from MobileEntity as mobile where mobileID='" + mobileID + "'";
-
-			org.hibernate.query.Query query = session.createQuery(hqlQuery);
+			org.hibernate.query.Query query = session.getNamedQuery("MobileEntity.getMobileColorByID");
+			query.setParameter("ID", mobileID);
 
 			Object object = query.uniqueResult();
 			System.out.println("without casting: " + object);
@@ -289,9 +287,8 @@ public class MobileDAOImpl implements MobileDAO {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 
-			String hqlQuery = " from MobileEntity where mobileID='" + mobileID + "'";
-
-			org.hibernate.query.Query query = session.createQuery(hqlQuery);
+			org.hibernate.query.Query query = session.getNamedQuery("MobileEntite.getMobileEntityByID");
+			query.setParameter("ID", mobileID);
 
 			Object object = query.uniqueResult();
 			System.out.println("without casting: " + object);
@@ -313,7 +310,7 @@ public class MobileDAOImpl implements MobileDAO {
 	}
 
 	@Override
-	public void updateMobilePriceByID(int mobileID) {
+	public void updateMobilePriceByID(int mobileID, double price) {
 		System.out.println("Invoked updateMobilePriceByID()");
 		Session session = null;
 		SessionFactory sessionFactory = null;
@@ -322,9 +319,10 @@ public class MobileDAOImpl implements MobileDAO {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 			session.beginTransaction();
-			String hqlQuery = "update MobileEntity set mobilePrice='37000'  where mobileID='" + mobileID + "'";
 
-			org.hibernate.query.Query query = session.createQuery(hqlQuery);
+			org.hibernate.query.Query query = session.getNamedQuery("MobileEntity.updateMobilePriceByID");
+			query.setParameter("ID", mobileID);
+			query.setParameter("PRICE", price);
 
 			int noOfRowsAffected = query.executeUpdate();
 			session.getTransaction().commit();
@@ -356,9 +354,9 @@ public class MobileDAOImpl implements MobileDAO {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 			session.beginTransaction();
-			String hqlQuery = "delete from MobileEntity where mobileID='" + mobileID + "'";
 
-			org.hibernate.query.Query query = session.createQuery(hqlQuery);
+			org.hibernate.query.Query query = session.getNamedQuery("MobileEntity.deleteMobileEntityByID");
+			query.setParameter("ID", mobileID);
 
 			int noOfRowsAffected = query.executeUpdate();
 			session.getTransaction().commit();
@@ -381,7 +379,7 @@ public class MobileDAOImpl implements MobileDAO {
 	}
 
 	@Override
-	public void updateMobilePriceByMobileBrand(String mobileBrand) {
+	public void updateMobilePriceByMobileBrand(String mobileBrand, double mobilePrice) {
 		System.out.println("Invoked updateMobilePriceByMobileBrand()");
 		Session session = null;
 		SessionFactory sessionFactory = null;
@@ -390,9 +388,9 @@ public class MobileDAOImpl implements MobileDAO {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 			session.beginTransaction();
-			String hqlQuery = "update MobileEntity set mobilePrice='56000'  where mobileBrand='" + mobileBrand + "'";
-
-			org.hibernate.query.Query query = session.createQuery(hqlQuery);
+			org.hibernate.query.Query query = session.getNamedQuery("MobileEntity.updateMobilePriceByMobileBrand");
+			query.setParameter("BRAND", mobileBrand);
+			query.setParameter("PRICE", mobilePrice);
 
 			int noOfRowsAffected = query.executeUpdate();
 			session.getTransaction().commit();
@@ -411,7 +409,7 @@ public class MobileDAOImpl implements MobileDAO {
 			} else {
 				System.out.println("Session is not closed");
 			}
-		}
+		}         
 
 	}
 
@@ -426,9 +424,8 @@ public class MobileDAOImpl implements MobileDAO {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 
-			String hqlQuery = " from MobileEntity where mobileBrand='" + mobileBrand + "'";
-
-			org.hibernate.query.Query query = session.createQuery(hqlQuery);
+			org.hibernate.query.Query query = session.getNamedQuery("MobileEntity.getMobileEntityByMobileBrand");
+			query.setParameter("BRAND", mobileBrand);
 
 			Object object = query.uniqueResult();
 			System.out.println("without casting: " + object);
@@ -457,7 +454,7 @@ public class MobileDAOImpl implements MobileDAO {
 			sessionFactory = SessionFactoryProvider.getSessionFactory();
 			session = sessionFactory.openSession();
 			session.beginTransaction();
-			String hqlQuery = "delete from MobileEntity where mobileBrand='" + mobileBrand + "'";
+			String hqlQuery = "delete from MobileEntity where mobileBrand=:BRAND";
 
 			org.hibernate.query.Query query = session.createQuery(hqlQuery);
 

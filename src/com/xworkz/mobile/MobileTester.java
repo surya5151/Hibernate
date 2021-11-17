@@ -11,7 +11,8 @@ public class MobileTester {
 
 		MobileDAOImpl mobileDAOImpl = new MobileDAOImpl();
 
-		MobileEntity mobileEntity = new MobileEntity("Sony3", 25000.0, "500GB", "cream", 20, true, "Andriod");
+		MobileEntity mobileEntity = new MobileEntity("Nokia", 18000.0, "500GB", "cream", 20, true, "Andriod");
+
 		// mobileDAOImpl.saveMobileEntity(mobileEntity);
 
 		// mobileDAOImpl.getMobileEntity();
@@ -22,27 +23,33 @@ public class MobileTester {
 
 		// mobileDAOImpl.getAllMobileEntites();
 
-		// mobileDAOImpl.getMobileBrandById(1);
+		// mobileDAOImpl.getMobileBrandById(5);
 
-		// mobileDAOImpl.getMobileColorByID(1);
+		// mobileDAOImpl.getMobileColorByID(5);
 
 //		Scanner scanner = new Scanner(System.in);
 //		System.out.println("Enter_ID");
-//		int mobileID = scanner.nextInt();
+//		int ID = scanner.nextInt();
+//
+		// mobileDAOImpl.getMobileEntityByID(1);
 
-		// mobileDAOImpl.getMobileEntityByID(2);
+		// mobileDAOImpl.updateMobilePriceByID(1,25000);
 
-		// mobileDAOImpl.updateMobilePriceByID(2);
+		// mobileDAOImpl.deleteMobileEntityByID(6);
+//
+//		Scanner scanner = new Scanner(System.in);
+//		System.out.println("Mobile_BRAND");	 
+//		System.out.println("Mobile_Price");
+//		String  brand = scanner.next();
+//		double price= scanner.nextDouble();
 
-		// mobileDAOImpl.deleteMobileEntityByID(10);
+		// mobileDAOImpl.updateMobilePriceByMobileBrand("apple", 48000);
 
-		// mobileDAOImpl.updateMobilePriceByMobileBrand("Apple");
+		 mobileDAOImpl.getMobileEntityByMobileBrand("sony");
 
-		// mobileDAOImpl.getMobileEntityByMobileBrand("Samsung");
+		// mobileDAOImpl.deleteMobileEntityByMobileBrand("Nokia");
 
-		// mobileDAOImpl.deleteMobileEntityByMobileBrand("Sony2");
-
-		// mobileDAOImpl.countMobileEntityBrand("nokia");
+		// mobileDAOImpl.countMobileEntityBrand("apple");
 
 		// mobileDAOImpl.minPriceInMobileEntity();
 
@@ -50,7 +57,7 @@ public class MobileTester {
 
 		// mobileDAOImpl.avgPriceInMobileEntity();
 
-		mobileDAOImpl.sumOfPriceInMobileEntity();
+		// mobileDAOImpl.sumOfPriceInMobileEntity();
 
 	}
 

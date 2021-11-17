@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NamedQuery;
 import org.hibernate.id.IdentifierGenerator;
 import org.hibernate.id.IdentityGenerator;
 import org.hibernate.id.IncrementGenerator;
@@ -14,6 +15,13 @@ import org.hibernate.id.SequenceGenerator;
 
 @Table(name = "mobile_details")
 @Entity
+@NamedQuery(name = "MobileEntity.getMobileEntityByID", query = "select mobileBrand from MobileEntity where mobileID=:ID")
+@NamedQuery(name = "MobileEntity.getMobileColorByID", query = "select mobile.mobileColor from MobileEntity as mobile where mobileID=:ID")
+@NamedQuery(name = "MobileEntite.getMobileEntityByID", query = "from MobileEntity where mobileID=:ID")
+@NamedQuery(name = "MobileEntity.updateMobilePriceByID", query = "update MobileEntity set mobilePrice=:PRICE  where mobileID=:ID")
+@NamedQuery(name = "MobileEntity.deleteMobileEntityByID", query = "delete from MobileEntity where mobileID=:ID")
+@NamedQuery(name = "MobileEntity.updateMobilePriceByMobileBrand", query = "update MobileEntity set mobilePrice=:PRICE  where mobileBrand=:BRAND")
+@NamedQuery(name = "MobileEntity.getMobileEntityByMobileBrand", query = "from MobileEntity where mobileBrand=:BRAND")
 public class MobileEntity implements java.io.Serializable { // implements are not mandatory
 
 	@Override
@@ -26,7 +34,7 @@ public class MobileEntity implements java.io.Serializable { // implements are no
 	@Id
 	@Column(name = "mobile_ID")
 	@GeneratedValue(generator = "abc")
-	@GenericGenerator(name="abc", strategy="increment")
+	@GenericGenerator(name = "abc", strategy = "increment")
 	private int mobileID;
 
 	@Column(name = "mobile_Brand")
@@ -50,10 +58,10 @@ public class MobileEntity implements java.io.Serializable { // implements are no
 	@Column(name = "os_Type")
 	private String osType;
 
-	public MobileEntity(String mobileBrand, double mobilePrice, String mobileRom, String mobileColor,
-			int cameraSize, boolean isFingerPrintSupport, String osType) {
+	public MobileEntity(String mobileBrand, double mobilePrice, String mobileRom, String mobileColor, int cameraSize,
+			boolean isFingerPrintSupport, String osType) {
 		super();
-		
+
 		this.mobileBrand = mobileBrand;
 		this.mobilePrice = mobilePrice;
 		this.mobileRom = mobileRom;
@@ -129,7 +137,7 @@ public class MobileEntity implements java.io.Serializable { // implements are no
 
 	public MobileEntity() {
 		System.out.println("Invoked no-org");
-		
+
 	}
 
 }

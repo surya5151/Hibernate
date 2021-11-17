@@ -20,11 +20,11 @@ public interface MobileDAO {
 
 	void getMobileEntityByID(int mobileID);
 
-	void updateMobilePriceByID(int mobileID);
+	void updateMobilePriceByID(int mobileID, double price);
 
 	void deleteMobileEntityByID(int mobileID);
 
-	void updateMobilePriceByMobileBrand(String mobileBrand);
+	void updateMobilePriceByMobileBrand(String mobileBrand, double mobilePrice);
 
 	void getMobileEntityByMobileBrand(String mobileBrand);
 
